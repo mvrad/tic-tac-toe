@@ -16,9 +16,9 @@ A functional, two-person Tic-Tac-Toe game.
   * Add the appropriate class to the <div> for the winning screen: <div class="screen screen-win" id="finish"> screen-win-one for player 1, screen-win-two for player two, or screen-win-tie if the game ends with no winner. For example, if player 1 wins, the HTML should look like this: <div class="screen screen-win screen-win-one" id="finish">
 * Add programming so that when a player pushes the "New Game" button, the board appears again, empty, and a new game begins.
 ## Extra Credit
-* On the start screen, prompt the user add their name before the game starts
-* Display the player’s name on the board screen during game play
+* On the start screen, prompt the user add their name before the game starts.
+* Display the player’s name on the board screen during game play.
 * Add programming to support playing against the computer. Only one player plays; the other is controlled by your programming.
-* Display the player’s name if they win the game
+* Display the player’s name if they win the game.
 ## View Project
 [Live Demo](https://matthew-conrad.github.io/tic-tac-toe/) for peer review.
