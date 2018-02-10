@@ -34,13 +34,6 @@
 
   button.addEventListener("click", newGame);
 
-  // Finish Screen
-  function gameOver() {
-    startScreen.style.display = "none";
-    boardScreen.style.display = "none";
-    finishScreen.style.display = "block";
-  }
-
   // Random Player
   function pickRandom() {
     if (Math.random() < 0.5) {
@@ -103,6 +96,46 @@
   })
 
   // Check for Win
-  
+  function checkWin() {
+    const board = [
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8, 9]
+    ];
+    let square = board;
+    square.forEach((el, index, array) => {
+      el.forEach((el2d, index2d, array2d) => {
+        console.log(board[1][2]); // Returns 6
+      });
+    });
+  }
+
+  checkWin();
+
+  // Game Over
+
+  function gameOver() {
+    let message = document.querySelector(".message");
+    if (winner == player1) {
+      message.innerHTML = "Winner";
+      finishScreen.classList.add("screen-win-one");
+      finishScreen.classList.remove("screen-win-two");
+      finishScreen.classList.remove("screen-win-tie");
+    } else if (winner == player2) {
+      message.innerHTML = "Winner";
+      finishScreen.classList.remove("screen-win-one");
+      finishScreen.classList.add("screen-win-two");
+      finishScreen.classList.remove("screen-win-tie");
+    } else {
+      message.innerHTML = "Draw";
+      finishScreen.classList.remove("screen-win-one");
+      finishScreen.classList.remove("screen-win-two");
+      finishScreen.classList.remove("screen-win-tie");
+    }
+  }
+
+  // gameOver();
+
+  // button.addEventListener("click", newGame);
 
 })();
