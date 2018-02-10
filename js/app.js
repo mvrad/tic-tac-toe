@@ -9,7 +9,6 @@
     finishScreen = document.getElementById("finish"),
     squares = document.querySelector(".boxes"),
     square = document.querySelector(".boxes > .box"),
-    board = [[0,0,0],[0,0,0],[0,0,0]],
     o = "url(img/o.svg)",
     x = "url(img/x.svg)";
   // Locals
@@ -18,11 +17,13 @@
     currentPlayer = player1;
 
   // Start Screen
-  window.onload = (() => {
+  function gameStart() {
     startScreen.style.display = "block";
     boardScreen.style.display = "none";
     finishScreen.style.display = "none";
-  });
+  }
+
+  gameStart();
 
   // Board Screen
   function newGame() {
@@ -32,7 +33,7 @@
   }
 
   button.addEventListener("click", newGame);
-  
+
   // Finish Screen
   function gameOver() {
     startScreen.style.display = "none";
@@ -102,6 +103,6 @@
   })
 
   // Check for Win
-
+  
 
 })();
