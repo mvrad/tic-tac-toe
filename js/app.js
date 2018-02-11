@@ -124,7 +124,6 @@
   }
 
   // Highlight Square / Unhighlight Square
-
   function highlightSquare() {
     squares.addEventListener("mouseover", (e) => {
       if (currentPlayer == player1) {
@@ -160,7 +159,6 @@
       if (currentPlayer == player1) {
         e.target.classList.add("box-filled-1");
         player1Move.push("O");
-        // player2Move.splice("X");
         switchPlayer();
         unhighlightPlayer();
         highlightPlayer();
@@ -169,7 +167,6 @@
       } else {
         e.target.classList.add("box-filled-2");
         player2Move.push("X");
-        // player1Move.splice("O");
         switchPlayer();
         unhighlightPlayer();
         highlightPlayer();
@@ -218,17 +215,12 @@
     }
   }
 
-  // checkWin();
-
   // AI
   function AI() {
 
   }
 
-  // AI();
-
   // Game Over
-
   function gameOver() {
     let winner = checkWin(),
       message = document.querySelector(".message");
@@ -252,11 +244,13 @@
   // Gameplay
   gameStart();
   selectPlayers();
+  // AI();
   pickRandom();
   highlightPlayer();
   highlightSquare();
   unhighlightSquare();
   pickSquare();
+  // checkWin();
   newButton.addEventListener("click", reset);
 
 })();
