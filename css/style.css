@@ -6,7 +6,8 @@ body {
 ul {
   margin: 0;
   padding: 0;
-  list-style: none; }
+  list-style: none;
+  margin-top: 80px; }
 
 h1 {
   font-family: "Montserrat", sans-serif;
@@ -14,6 +15,12 @@ h1 {
   margin: 0 auto;
   text-align: left;
   width: 1.875em; }
+
+h2 {
+  text-align: center;
+  color: #000;
+  margin: 20px 0;
+}
 
 .button {
   background: #fff;
@@ -107,8 +114,10 @@ h1 {
   #player1.active svg g, #player2.active svg g {
     fill: #fff; }
   #player1.active {
+    color: #fff;
     background: #FFA000; }
   #player2.active {
+    color: #fff;
     background: #3688C3; }
 
 .boxes {
@@ -138,4 +147,28 @@ h1 {
       background-color: #3688C3;
       background-image: url(../img/x.svg); }
 
+input[type="text"] {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5em;
+  text-align: center;
+  padding: 10px 0;
+  width: 186.219px;
+  margin: -10px 0 20px;
+}
 
+#playerTwo {
+  margin-top: -30px;
+}
+
+h3 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 0;
+}
+h3.active {
+  color: #fff;
+}
+
+#boardLogo {
+  padding-top: 25px;
+}
