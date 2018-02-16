@@ -27,17 +27,7 @@
     message = document.querySelector(".message"),
     currentPlayer = player1,
     player1Move = [],
-    player2Move = [],
-    wins = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6]
-    ];
+    player2Move = [];
 
   // Start Screen
   function gameStart() {
@@ -169,43 +159,38 @@
 
   // Check for Winner
   function checkWinner() {
-    function checkWin(playerMove) {
-      for (let i = 0; i < wins.length; i++) {
-        let win = wins[i];
-        for (let j = 0; j < win.length; j++) {
-          let nums = win[j];
-          console.log(nums);
-          // if () {
-          //   return true;
-          // } else {
-          //   return false;
-          // }
-        }
+    const wins = [
+      [0, 1, 2], [0, 2, 1], [2, 1, 0], [2, 0, 1], [1, 0, 2], [1, 2, 0],
+      [3, 4, 5], [3, 5, 4], [5, 4, 3], [5, 3, 4], [4, 3, 5], [4, 5, 3],
+      [6, 7, 8], [6, 8, 7], [8, 7, 6], [8, 6, 7], [7, 6, 8], [7, 8, 6],
+      [0, 3, 6], [0, 6, 3], [6, 3, 0], [6, 0, 3], [3, 0, 6], [3, 6, 0],
+      [1, 4, 7], [1, 7, 4], [7, 4, 1], [7, 1, 4], [4, 1, 7], [4, 7, 1],
+      [2, 5, 8], [2, 8, 5], [8, 5, 2], [8, 2, 5], [5, 2, 8], [5, 8, 2],
+      [0, 4, 8], [0, 8, 4], [8, 4, 0], [8, 0, 4], [4, 0, 8], [4, 8, 0],
+      [2, 4, 6], [2, 6, 4], [6, 4, 2], [6, 2, 4], [4, 2, 6], [4, 6, 2]
+    ];
+    
+    wins.forEach((el, index, arr) => {
+      if (el[0] == player1Move[0] && el[1] == player1Move[1] && el[2] == player1Move[2]) {
+        message.innerHTML = printName1.textContent + " Wins";
+        endScreen();
+        finishScreen.classList.add("screen-win-one");
+        finishScreen.classList.remove("screen-win-two");
+        finishScreen.classList.remove("screen-win-tie");
+      } else if (el[0] == player2Move[0] && el[1] == player2Move[1] && el[2] == player2Move[2]) {
+        message.innerHTML = printName2.textContent + " Wins";
+        endScreen();
+        finishScreen.classList.remove("screen-win-one");
+        finishScreen.classList.add("screen-win-two");
+        finishScreen.classList.remove("screen-win-tie");
+      } else if (player1Move.length + player2Move.length === 9) {
+        message.innerHTML = "It's a Tie!";
+        endScreen();
+        finishScreen.classList.remove("screen-win-one");
+        finishScreen.classList.remove("screen-win-two");
+        finishScreen.classList.add("screen-win-tie");
       }
-    }
-
-    // console.log(checkWin(player1Move));
-    // console.log(checkWin(player2Move));
-
-    if (player1Move.length >= 3 && checkWin(player1Move) === true) {
-      message.innerHTML = printName1.textContent + " Wins";
-      endScreen();
-      finishScreen.classList.add("screen-win-one");
-      finishScreen.classList.remove("screen-win-two");
-      finishScreen.classList.remove("screen-win-tie");
-    } else if (player2Move.length >= 3 && checkWin(player2Move) === true) {
-      message.innerHTML = printName2.textContent + " Wins";
-      endScreen();
-      finishScreen.classList.remove("screen-win-one");
-      finishScreen.classList.add("screen-win-two");
-      finishScreen.classList.remove("screen-win-tie");
-    } else if (player1Move.length + player2Move.length === 9) {
-      message.innerHTML = "It's a Tie!";
-      endScreen();
-      finishScreen.classList.remove("screen-win-one");
-      finishScreen.classList.remove("screen-win-two");
-      finishScreen.classList.add("screen-win-tie");
-    }
+    });
   }
 
   // AI
