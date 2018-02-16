@@ -16,11 +16,7 @@
     twoPlayers = document.getElementById("twoPlayers"),
     player1Div = document.getElementById("playerOne"),
     player2Div = document.getElementById("playerTwo"),
-    board = [
-      [1, 2, 3], // [0][0], [0][1], [0][2]
-      [4, 5, 6], // [1][0], [1][1], [1][2]
-      [7, 8, 9]  // [2][0], [2][1], [2][2]
-    ];
+    board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
 
   let player1 = document.getElementById("player1"),
     player2 = document.getElementById("player2"),
@@ -28,19 +24,20 @@
     player2Name = document.getElementById("player2Name"),
     printName1 = document.getElementById("printName1"),
     printName2 = document.getElementById("printName2"),
+    message = document.querySelector(".message"),
     currentPlayer = player1,
-    wins = [
-      [1, 2, 3], // Horizontal
-      [4, 5, 6],
-      [7, 8, 9],
-      [1, 4, 7], // Vertical
-      [2, 5, 8],
-      [3, 6, 9],
-      [1, 5, 9], // Diagonal
-      [3, 5, 7]
-    ],
     player1Move = [],
-    player2Move = [];
+    player2Move = [],
+    wins = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6]
+    ];
 
   // Start Screen
   function gameStart() {
@@ -56,10 +53,8 @@
     startScreen.style.display = "none";
     boardScreen.style.display = "block";
     finishScreen.style.display = "none";
-    player1Move = [];
-    player2Move = [];
     if (name1 == "") {
-      printName1.innerHTML = "You";
+      printName1.innerHTML = "Player 1";
       printName2.innerHTML = "Computer";
     } else if (name2 == "") {
       printName1.innerHTML = name1;
@@ -144,72 +139,73 @@
     currentPlayer = currentPlayer == player1 ? player2 : player1;
   }
 
-  // Check for Win
-  function checkWin() {
-    let player;
-    if (currentPlayer == player1) {
-      player = player1Move;
-    } else {
-      player = player2Move;
-    }
-
-    for (let i = 0; i < wins.length; i++) {
-      let win = wins[i];
-      for (let j = 0; j < win.length; j++) {
-        let num = win[j],
-          compare = player.indexOf(num);
-
-        if (compare === -1) {
-          return true;
-        }
-      }
-    }
-  }
-
   // Pick Square
   function pickSquare() {
-    let winner = checkWin(),
-      message = document.querySelector(".message");
+    const boxFilled1 = document.getElementsByClassName("box-filled-1")[0],
+      boxFilled2 = document.getElementsByClassName("box-filled-2")[0];
+    let square = board;
 
     squares.addEventListener("click", (e) => {
+      let boxFilledIndex = [].slice.call(e.target.parentNode.children).indexOf(e.target);
       if (currentPlayer == player1) {
-        // player1Move += 
+        player1Move.push(boxFilledIndex);
         e.target.classList.add("box-filled-1");
         switchPlayer();
         unhighlightPlayer();
         highlightPlayer();
-        e.target.style.pointerEvents ="none";
+        checkWinner();
+        e.target.style.pointerEvents = "none";
       } else {
-        // player2Move += 
+        player2Move.push(boxFilledIndex);
         e.target.classList.add("box-filled-2");
         switchPlayer();
         unhighlightPlayer();
         highlightPlayer();
-        e.target.style.pointerEvents ="none";
-      }
-
-      if (winner) {
-        if (winner == player1) {
-        message.innerHTML = printName1.textContent + " Wins";
-        endScreen();
-        finishScreen.classList.add("screen-win-one");
-        finishScreen.classList.remove("screen-win-two");
-        finishScreen.classList.remove("screen-win-tie");
-        } else if (winner == player2) {
-        message.innerHTML = printName2.textContent + " Wins";
-        endScreen();
-        finishScreen.classList.remove("screen-win-one");
-        finishScreen.classList.add("screen-win-two");
-        finishScreen.classList.remove("screen-win-tie");
-        } else if (player1Move.length + player2Move.length === 9) {
-        message.innerHTML = "It's a Tie!";
-        endScreen();
-        finishScreen.classList.remove("screen-win-one");
-        finishScreen.classList.remove("screen-win-two");
-        finishScreen.classList.add("screen-win-tie");
-        }
+        checkWinner();
+        e.target.style.pointerEvents = "none";
       }
     });
+  }
+
+  // Check for Winner
+  function checkWinner() {
+    function checkWin(playerMove) {
+      for (let i = 0; i < wins.length; i++) {
+        let win = wins[i];
+        for (let j = 0; j < win.length; j++) {
+          let nums = win[j];
+          console.log(nums);
+          // if () {
+          //   return true;
+          // } else {
+          //   return false;
+          // }
+        }
+      }
+    }
+
+    // console.log(checkWin(player1Move));
+    // console.log(checkWin(player2Move));
+
+    if (player1Move.length >= 3 && checkWin(player1Move) === true) {
+      message.innerHTML = printName1.textContent + " Wins";
+      endScreen();
+      finishScreen.classList.add("screen-win-one");
+      finishScreen.classList.remove("screen-win-two");
+      finishScreen.classList.remove("screen-win-tie");
+    } else if (player2Move.length >= 3 && checkWin(player2Move) === true) {
+      message.innerHTML = printName2.textContent + " Wins";
+      endScreen();
+      finishScreen.classList.remove("screen-win-one");
+      finishScreen.classList.add("screen-win-two");
+      finishScreen.classList.remove("screen-win-tie");
+    } else if (player1Move.length + player2Move.length === 9) {
+      message.innerHTML = "It's a Tie!";
+      endScreen();
+      finishScreen.classList.remove("screen-win-one");
+      finishScreen.classList.remove("screen-win-two");
+      finishScreen.classList.add("screen-win-tie");
+    }
   }
 
   // AI
