@@ -145,13 +145,13 @@
         highlightPlayer();
         checkWinner();
         e.target.style.pointerEvents = "none";
-      } else {
+      } else if (currentPlayer == player2) {
         player2Move.push(boxFilledIndex);
         e.target.classList.add("box-filled-2");
         switchPlayer();
         unhighlightPlayer();
         highlightPlayer();
-        checkWinner();
+        checkWinner();        
         e.target.style.pointerEvents = "none";
       }
     });
@@ -159,31 +159,69 @@
 
   // Check for Winner
   function checkWinner() {
-    const wins = [
-      [0, 1, 2], [0, 2, 1], [2, 1, 0], [2, 0, 1], [1, 0, 2], [1, 2, 0],
-      [3, 4, 5], [3, 5, 4], [5, 4, 3], [5, 3, 4], [4, 3, 5], [4, 5, 3],
-      [6, 7, 8], [6, 8, 7], [8, 7, 6], [8, 6, 7], [7, 6, 8], [7, 8, 6],
-      [0, 3, 6], [0, 6, 3], [6, 3, 0], [6, 0, 3], [3, 0, 6], [3, 6, 0],
-      [1, 4, 7], [1, 7, 4], [7, 4, 1], [7, 1, 4], [4, 1, 7], [4, 7, 1],
-      [2, 5, 8], [2, 8, 5], [8, 5, 2], [8, 2, 5], [5, 2, 8], [5, 8, 2],
-      [0, 4, 8], [0, 8, 4], [8, 4, 0], [8, 0, 4], [4, 0, 8], [4, 8, 0],
-      [2, 4, 6], [2, 6, 4], [6, 4, 2], [6, 2, 4], [4, 2, 6], [4, 6, 2]
-    ];
-    
-    wins.forEach((el, index, arr) => {
-      if (el[0] == player1Move[0] && el[1] == player1Move[1] && el[2] == player1Move[2]) {
+    const win = ["012", "345", "678", "036", "147", "258", "048", "246"],
+
+    // Gets Permutations of an Array
+    permutator = (inputArr) => {
+      let result = [];
+
+      const permute = (arr, m = []) => {
+        if (arr.length === 0) {
+          result.push(m)
+        } else {
+          for (let i = 0; i < arr.length; i++) {
+            let curr = arr.slice();
+            let next = curr.splice(i, 1);
+            permute(curr.slice(), m.concat(next))
+          }
+        }
+      }
+      permute(inputArr)
+      return result;
+    };
+
+    let player1Score = permutator(player1Move),
+      player2Score = permutator(player2Move);
+
+    win.forEach((el, index, arr) => {
+      // Check Player Moves for Winning Combinations
+      let winning = new RegExp(".?" + el[0] + ".?" + el[1] + ".?" + el[2] + ".?"),
+        winner;
+
+      function player1WinCheck() {
+        winner = "false";
+        if (winning.test(player1Score)) {
+          winner = "true";
+        }
+        return winner;
+      }
+      function player2WinCheck() {
+        winner = "false";
+        if (winning.test(player2Score)) {
+          winner = "true";
+        }
+        return winner;
+      }
+
+      let isTrue = (el) => {
+        return el === "true";
+      };
+
+      if ([player1WinCheck(winner)].some(isTrue)) {
         message.innerHTML = printName1.textContent + " Wins";
         endScreen();
         finishScreen.classList.add("screen-win-one");
         finishScreen.classList.remove("screen-win-two");
         finishScreen.classList.remove("screen-win-tie");
-      } else if (el[0] == player2Move[0] && el[1] == player2Move[1] && el[2] == player2Move[2]) {
+      } else if ([player2WinCheck(winner)].some(isTrue)) {
         message.innerHTML = printName2.textContent + " Wins";
         endScreen();
         finishScreen.classList.remove("screen-win-one");
         finishScreen.classList.add("screen-win-two");
         finishScreen.classList.remove("screen-win-tie");
-      } else if (player1Move.length + player2Move.length === 9) {
+      } else if ([player1WinCheck(winner)].some(isTrue) === false &&
+        [player1WinCheck(winner)].some(isTrue) === false &&
+        player1Move.length + player2Move.length === 9) {
         message.innerHTML = "It's a Tie!";
         endScreen();
         finishScreen.classList.remove("screen-win-one");
