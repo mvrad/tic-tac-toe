@@ -29,20 +29,28 @@
     player1Move = [],
     player2Move = [];
 
-  // Start Screen
-  function gameStart() {
-    startScreen.style.display = "block";
-    boardScreen.style.display = "none";
-    finishScreen.style.display = "none";
+  // Show Current Display
+  function showScreen(screen) {
+    if (screen == startScreen) {
+      startScreen.style.display = "block";
+      boardScreen.style.display = "none";
+      finishScreen.style.display = "none";
+    } else if (screen == boardScreen) {
+      startScreen.style.display = "none";
+      boardScreen.style.display = "block";
+      finishScreen.style.display = "none";
+    } else if (screen == finishScreen) {
+      startScreen.style.display = "none";
+      boardScreen.style.display = "none";
+      finishScreen.style.display = "block";
+    }
   }
 
-  // Board Screen
+  // New Game
   function newGame() {
+    showScreen(boardScreen);
     let name1 = player1Name.value,
       name2 = player2Name.value;
-    startScreen.style.display = "none";
-    boardScreen.style.display = "block";
-    finishScreen.style.display = "none";
     if (name1 == "") {
       printName1.innerHTML = "Player 1";
       printName2.innerHTML = "Computer";
@@ -53,13 +61,6 @@
       printName1.innerHTML = name1;
       printName2.innerHTML = name2;  
     }
-  }
-
-  // Finish Screen
-  function endScreen() {
-    startScreen.style.display = "none";
-    boardScreen.style.display = "none";
-    finishScreen.style.display = "block";
   }
 
   // Number of Players
@@ -84,13 +85,18 @@
     }
   }
 
-  // Random Player
+  // Random Starting Player
   function pickRandom() {
     if (Math.random() < 0.5) {
       currentPlayer = player1;
     } else {
       currentPlayer = player2;
     }
+  }
+
+  // Switch Player
+  function switchPlayer() {
+    currentPlayer = currentPlayer == player1 ? player2 : player1;
   }
 
   // Highlight Player / Unhighlight Player
@@ -124,11 +130,6 @@
     });
   }
 
-  // Switch Player
-  function switchPlayer() {
-    currentPlayer = currentPlayer == player1 ? player2 : player1;
-  }
-
   // Pick Square
   function pickSquare() {
     const boxFilled1 = document.getElementsByClassName("box-filled-1")[0],
@@ -160,7 +161,6 @@
   // Check for Winner
   function checkWinner() {
     const win = ["012", "345", "678", "036", "147", "258", "048", "246"],
-
     // Gets Permutations of an Array
     permutator = (inputArr) => {
       let result = [];
@@ -195,6 +195,7 @@
         }
         return winner;
       }
+      
       function player2WinCheck() {
         winner = "false";
         if (winning.test(player2Score)) {
@@ -209,30 +210,35 @@
 
       if ([player1WinCheck(winner)].some(isTrue)) {
         message.innerHTML = printName1.textContent + " Wins";
-        endScreen();
         finishScreen.classList.add("screen-win-one");
         finishScreen.classList.remove("screen-win-two");
         finishScreen.classList.remove("screen-win-tie");
+        showScreen(finishScreen);
       } else if ([player2WinCheck(winner)].some(isTrue)) {
         message.innerHTML = printName2.textContent + " Wins";
-        endScreen();
         finishScreen.classList.remove("screen-win-one");
         finishScreen.classList.add("screen-win-two");
         finishScreen.classList.remove("screen-win-tie");
+        showScreen(finishScreen);
       } else if ([player1WinCheck(winner)].some(isTrue) === false &&
         [player1WinCheck(winner)].some(isTrue) === false &&
         player1Move.length + player2Move.length === 9) {
         message.innerHTML = "It's a Tie!";
-        endScreen();
         finishScreen.classList.remove("screen-win-one");
         finishScreen.classList.remove("screen-win-two");
         finishScreen.classList.add("screen-win-tie");
+        showScreen(finishScreen);
       }
     });
   }
 
+  // The Minimax Algorithm
+  function minimax() {
+
+  }
+
   // AI
-  function AI() {
+  function aiPlayer() {
 
   }
 
@@ -241,10 +247,9 @@
   }
 
   // Gameplay
+  showScreen(startScreen);
   startButton.addEventListener("click", newGame);
-  gameStart();
   selectPlayers();
-  // AI();
   pickRandom();
   highlightPlayer();
   highlightSquare();
