@@ -16,8 +16,8 @@
     twoPlayers = document.getElementById("twoPlayers"),
     player1Div = document.getElementById("playerOne"),
     player2Div = document.getElementById("playerTwo"),
-    board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]],
-    win = ["012", "345", "678", "036", "147", "258", "048", "246"];
+    win = ["012", "345", "678", "036", "147", "258", "048", "246"],
+    board = Array(9);
 
   let player1 = document.getElementById("player1"),
     player2 = document.getElementById("player2"),
@@ -65,51 +65,33 @@
     }
   }
 
-  // New Game
-  function newGame() {
-    showScreen(boardScreen);
-    let name1 = player1Name.value,
-      name2 = player2Name.value;
-    if (name1 == "") {
-      printName1.innerHTML = "Player 1";
-      printName2.innerHTML = "Computer";
-    } else if (name2 == "") {
-      printName1.innerHTML = name1;
-      printName2.innerHTML = "Computer";
-    } else {
-      printName1.innerHTML = name1;
-      printName2.innerHTML = name2;  
-    }
-  }
-
-  // Number of Players
-  function selectPlayers() {
-    let players = document.forms[0],
-      i;
-    playerOne.style.display = "none";
-    playerTwo.style.display = "none";
-    for (i = 0; i < players.length; i++) {
-      players.addEventListener("click", () => {
-        if (players[0].checked) {
-          playerOne.style.display = "block";
-          playerTwo.style.display = "none";
-        } else if (players[1].checked) {
-          playerOne.style.display = "block";
-          playerTwo.style.display = "block";
-        } else {
-          playerOne.style.display = "none";
-          playerTwo.style.display = "none";
-        }
-      });
-    }
-  }
-
-  // Random Starting Player
+  // Start with Random Player
   function pickRandom() {
     if (Math.random() < 0.5) {
       currentPlayer = player1;
     } else {
       currentPlayer = player2;
+    }
+  }
+
+  // New Game
+  function newGame() {
+    showScreen(boardScreen);
+    // Prints Names to Screen
+    let name1 = player1Name.value,
+      name2 = player2Name.value;
+    if (name1 == "" && name2 == "") {
+      printName1.innerHTML = "Player 1";
+      printName2.innerHTML = "Player 2";
+    } else if (name1 == "") {
+      printName1.innerHTML = "Player 1";
+      printName2.innerHTML = name2;
+    } else if (name2 == "") {
+      printName1.innerHTML = name1;
+      printName2.innerHTML = "Player 2";
+    } else {
+      printName1.innerHTML = name1;
+      printName2.innerHTML = name2;  
     }
   }
 
@@ -160,18 +142,18 @@
       if (currentPlayer == player1) {
         player1Move.push(boxFilledIndex);
         e.target.classList.add("box-filled-1");
+        checkWinner();
         switchPlayer();
         unhighlightPlayer();
         highlightPlayer();
-        checkWinner();
         e.target.style.pointerEvents = "none";
-      } else if (currentPlayer == player2) {
+      } else {
         player2Move.push(boxFilledIndex);
         e.target.classList.add("box-filled-2");
+        checkWinner();
         switchPlayer();
         unhighlightPlayer();
         highlightPlayer();
-        checkWinner();        
         e.target.style.pointerEvents = "none";
       }
     });
@@ -220,16 +202,6 @@
     });
   }
 
-  // The Minimax Algorithm
-  function minimax() {
-
-  }
-
-  // AI
-  function aiPlayer() {
-
-  }
-
   function reset() {
     location.reload();
   }
@@ -237,7 +209,6 @@
   // Gameplay
   showScreen(startScreen);
   startButton.addEventListener("click", newGame);
-  selectPlayers();
   pickRandom();
   highlightPlayer();
   highlightSquare();
