@@ -138,23 +138,22 @@
     let square = board;
 
     squares.addEventListener("click", (e) => {
+      const gameplay = () => {
+        checkWinner();
+        switchPlayer();
+        unhighlightPlayer();
+        highlightPlayer();
+        e.target.style.pointerEvents = "none";
+      }
       let boxFilledIndex = [].slice.call(e.target.parentNode.children).indexOf(e.target);
       if (currentPlayer == player1) {
         player1Move.push(boxFilledIndex);
         e.target.classList.add("box-filled-1");
-        checkWinner();
-        switchPlayer();
-        unhighlightPlayer();
-        highlightPlayer();
-        e.target.style.pointerEvents = "none";
+        gameplay();
       } else {
         player2Move.push(boxFilledIndex);
         e.target.classList.add("box-filled-2");
-        checkWinner();
-        switchPlayer();
-        unhighlightPlayer();
-        highlightPlayer();
-        e.target.style.pointerEvents = "none";
+        gameplay();
       }
     });
   }
@@ -206,7 +205,7 @@
     location.reload();
   }
 
-  // Gameplay
+  // Game
   showScreen(startScreen);
   startButton.addEventListener("click", newGame);
   pickRandom();
