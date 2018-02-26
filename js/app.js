@@ -16,7 +16,7 @@
     twoPlayers = document.getElementById("twoPlayers"),
     player1Div = document.getElementById("playerOne"),
     player2Div = document.getElementById("playerTwo"),
-    win = ["012", "345", "678", "036", "147", "258", "048", "246"],
+    wins = ["012", "345", "678", "036", "147", "258", "048", "246"],
     board = Array(9);
 
   let player1 = document.getElementById("player1"),
@@ -165,10 +165,10 @@
       player1Win = "false",
       player2Win = "false";
 
-    win.forEach((el, index, arr) => {
-      let winning = new RegExp(".?" + el[0] + ".?" + el[1] + ".?" + el[2] + ".?"),
-        isTrue = (el) => {
-        return el === "true";
+    wins.forEach(win => {
+      let winning = new RegExp(".?" + win[0] + ".?" + win[1] + ".?" + win[2] + ".?"),
+        isTrue = (win) => {
+        return win === "true";
       };
 
       if (winning.test(player1Score)) {
