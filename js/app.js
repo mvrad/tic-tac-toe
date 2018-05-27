@@ -12,10 +12,6 @@
     square = document.querySelector(".boxes > .box"),
     o = "url(img/o.svg)",
     x = "url(img/x.svg)",
-    onePlayer = document.getElementById("onePlayer"),
-    twoPlayers = document.getElementById("twoPlayers"),
-    player1Div = document.getElementById("playerOne"),
-    player2Div = document.getElementById("playerTwo"),
     wins = ["012", "345", "678", "036", "147", "258", "048", "246"],
     board = Array(9);
 
@@ -32,7 +28,6 @@
     // Gets Permutations of an Array
     permutator = (inputArr) => {
       let result = [];
-
       const permute = (arr, m = []) => {
         if (arr.length === 0) {
           result.push(m)
