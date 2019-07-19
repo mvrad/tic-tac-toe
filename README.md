@@ -21,4 +21,4 @@ A functional, two-person Tic-Tac-Toe game.
 * Add programming to support playing against the computer. Only one player plays; the other is controlled by your programming.
 * Display the player’s name if they win the game.
 ## View Project
-[Live Demo](https://matthew-conrad.github.io/tic-tac-toe/) for peer review.
+[Live Demo](https://mvrad.github.io/tic-tac-toe/) for peer review.
