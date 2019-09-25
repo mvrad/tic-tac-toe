@@ -1,24 +1,54 @@
-# Tic-Tac-Toe
-## Project 4 | Treehouse Full Stack JavaScript Techdegree
-A functional, two-person Tic-Tac-Toe game.
+![General Assembly Logo](http://i.imgur.com/ke8USTq.png)
+
+# Tic Tac Toe
+
+## Objectives
+
+* Build a tic tac toe game in HTML, CSS, and vanilla JavaScript
+* Use best practices when writing code
+
+This week we have been learning about writing functions, working with loops, and writing conditionals. We also learned about HTML, CSS, and the DOM.
+
+We will be making a Tic Tac Toe game using all of these concepts.
+
+## Getting Started
+
+* Fork and clone this repository.
+* Run `npm install` to install dependencies.
+  * `npm start` - start BrowserSync server
+* Before you even start working with JavaScript, construct the gameboard. The gameboard page should include the 3x3 grid (of divs), and at minimum a reset button. Using `id` and `class` on clickable elements will help you wire this up in JavaScript afterwards.
+* The JavaScript portion will be next
+  * Select elements and attach functions via event listeners
+  * You will also need a variable to keep track of moves. This will be used to indicate whether or not to draw an `X` or an `O`
+
 ## Requirements
-* Use the supplied mockup files and HTML snippets to guide you in building a Tic Tac Toe game. You can use jQuery or plain JavaScript to complete this project. Don't use an already programmed Tic Tac Toe plugin or library.
-* When the page loads, the startup screen should appear. Use the tictactoe-01-start.png mockup, and the start.txt HTML snippet to guide you.
-* Add programming, so that when the player clicks the start button the start screen disappears, the board appears, and the game begins. Use the tictactoe-02-inprogress.png mockup, and the board.txt HTML snippet to guide you.
-* Add the game play following these rules:
-  * Play alternates between X and O.
-  * The current player is indicated at the top of the page -- the box with the symbol O or X is highlighted for the current player. You can do this by simply adding the class .active to the proper list item in the HTML. For example, if it's player one's turn, the HTML should look like this: <li class="players active" id="player1">
-  * When the current player mouses over an empty square on the board, it's symbol the X or O should appear on the square. You can do this using the x.svg or o.svg graphics (hint use JavaScript to set the background-image property for that box.)
-  * Players can only click on empty squares. When the player clicks on an empty square, attach the class box-filled-1 (for O) or box-filled-2 (for X) to the square. The CSS we're providing will automatically add the proper image to the square marking it as occupied.
-  * The game ends when one player has three of their symbols in a row either horizontally, vertically or diagonally. If all of the squares are filled and no players have three in a row, the game is a tie.
-* Add programming so that when the game ends, the board disappears and the game end screen appears. Use the tictactoe-03-winner1.png and tictactoe-04-winner2.png mockups, and the win.txt HTML snippet for guidance. Depending on the game results the final screen should:
-  * Show the word "Winner" or the phrase "It's a Tie!"
-  * Add the appropriate class to the <div> for the winning screen: <div class="screen screen-win" id="finish"> screen-win-one for player 1, screen-win-two for player two, or screen-win-tie if the game ends with no winner. For example, if player 1 wins, the HTML should look like this: <div class="screen screen-win screen-win-one" id="finish">
-* Add programming so that when a player pushes the "New Game" button, the board appears again, empty, and a new game begins.
-## Extra Credit
-* On the start screen, prompt the user add their name before the game starts.
-* Display the player’s name on the board screen during game play.
-* Add programming to support playing against the computer. Only one player plays; the other is controlled by your programming.
-* Display the player’s name if they win the game.
-## View Project
-[Live Demo](https://mvrad.github.io/tic-tac-toe/) for peer review.
+* A user should be able to click on different squares to make a move.
+* Every click will alternate between marking an `X` and `O`
+* Upon marking of an individual cell, use JavaScript to add a class to each cell to display the separate players.
+* A cell should not be able to be replayed once marked.
+* You should not be able to click remaining empty cells after the game is over.
+* Add a reset button that will clear the contents of the board.
+* Display a message to indicate which turn is about to be played.
+* Detect draw conditions (ties/cat's game) 
+* Detect winner: Stop game and declare the winner if one player ends up getting three in a row. 
+  * Hint: Determine a set of winning combinations. Check those combinations on the board contents after every move.
+
+**Have Fun** - The best way to learn is by playing with code. Let creativity guide you and try some experiments with JS and CSS and see what you can do.
+
+## Bonuses
+
+* Implement your reset button without refreshing the whole page
+* Track player's wins over time
+* Add a simple AI to support one player vs computer mode. In this case, "simple" just means having the computer pick a random empty square.
+* Make your computer seem more human by adding a short time delay between your turn and the computer's turn.
+* Style it up! Get creative, or even make a theme!
+
+## Super Duper Bonus
+
+* Add an AI that can beat you every time with the mini-max algorithm.
+
+---
+
+## Licensing
+1. All content is licensed under a CC-BY-NC-SA 4.0 license.
+2. All software code is licensed under GNU GPLv3. For commercial use or alternative licensing, please contact legal@ga.co.
