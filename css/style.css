@@ -1,7 +1,37 @@
-@charset "UTF-8";
-body {
-  background: #fff;
-  font-family: "Montserrat", sans-serif; }
+body, .screen-win-one, .screen-win-two, .screen-win-tie {
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+  color: #fff;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  font-family: "Montserrat", sans-serif;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+header img {
+  width: 240px;
+  height: auto;
+  margin-bottom: 80px;
+}
+.logo-sm {
+  display: block;
+  width: 100px;
+  height: auto;
+  margin: 20px auto 0;
+}
 
 ul {
   margin: 0;
@@ -18,16 +48,18 @@ h1 {
 
 h2 {
   text-align: center;
-  color: #000;
+  color: #fff;
   margin: 20px 0;
 }
 
 .button {
   background: #fff;
   border-radius: 4px;
+  width: 240px;
+  padding: 15px 10px;
+  margin: 20px 0 20px;
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
   display: inline-block;
-  padding: 1.25em 3em;
   text-decoration: none;
   -webkit-transition: 0.25s ease;
   transition: 0.25s ease; }
@@ -49,14 +81,16 @@ h2 {
     transform: translatey(-50%); }
   .screen h1 {
     color: #fff; }
-  .screen-start {
-    background: #54D17A; }
-    .screen-start h1 {
-      font-size: 6em; }
-    .screen-start .button {
-      color: #54D17A; }
-    .screen-start h1 + .button {
-      margin-top: 5em; }
+  .screen-start h1 {
+    font-size: 6em; 
+    margin-bottom: 80px; }
+  .screen-start .button {
+    color: #000; }
+  .screen-start h1 + .button {
+    margin-top: 5em; }
+  .screen-start .button:hover {
+    background-color: #54D17A;
+  }
   .screen-win p {
     font-size: 6em;
     font-weight: 700;
@@ -71,21 +105,22 @@ h2 {
       font-weight: 400;
       line-height: 0;
       z-index: -1; }
-  .screen-win-tie {
-    background: #54D17A; }   
-  .screen-win-one {
-    background: #FFA000; }
-    .screen-win-one .button {
-      color: #3688C3; }
+    .screen-win-one .button,
+    .screen-win-two .button {
+      color: #000;
+      background: #fff;
+    }
+    .screen-win-one .button:hover,
+    .screen-win-two .button:hover,
+    .screen-win-tie .button:hover {
+      background: #54D17A }
     .screen-win-one p:before {
       content: "o";
+      color: #FFA000;
       top: 1.75rem; }
-  .screen-win-two {
-    background: #3688C3; }
-    .screen-win-two .button {
-      color: #FFA000; }
     .screen-win-two p:before {
       content: "×";
+      color: #3688C3;
       top: 4.5rem; }
 
 .board {
@@ -100,7 +135,6 @@ h2 {
   top: 1rem;
   width: 35%;
   padding: 1.25em 0 1em;
-  outline: 1px solid #ccc;
   transition: 1s; }
   .players svg g {
     fill: rgba(0, 0, 0, 0.25); }
@@ -124,7 +158,7 @@ h2 {
   width: 480px;
   margin: 3em auto 0; }
   .boxes .box {
-    background: #d3d3d3;
+    background: #202020;
     border-radius: 4px;
     width: 150px;
     height: 150px;
@@ -148,12 +182,14 @@ h2 {
       background-image: url(../img/x.svg); }
 
 input[type="text"] {
+  color: #000;
   font-family: "Montserrat", sans-serif;
-  font-size: 1.5em;
-  text-align: center;
-  padding: 10px 0;
-  width: 186.219px;
-  margin: -10px 0 20px;
+  font-size: 1.2em;
+  padding: 10px;
+  width: 240px;
+  border: none;
+  border-radius: 4px;
+  margin: 20px 0 20px;
 }
 
 #playerTwo {
