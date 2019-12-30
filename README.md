@@ -1,21 +1,22 @@
 <p align="center">
   <a href="https://winoapp.herokuapp.com">
-    <img alt="Logo" src="img/logo.svg" width="180px" />
+    <img alt="Logo" src="img/logo_black.svg" width="180px" />
   </a>
 </p>
 <div align="center">
   <h1>Tic-Tac-Toe</h1>
   <h3>The classic pencil-and-paper game written for the browser in HTML, CSS, and vanilla JavaScript.</h3>
 </div>
-<p align="center">
-  <a href="https://github.com/mvrad/tic-tac-toe/blob/master/LICENSE">
-    <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="TravelStar is released under the MIT license.">
-  </a>
-</p>
 
 ## About Tic-Tac-Toe
 
 Tic-tac-toe is a game in which two players alternately put Xs and Os within squares. The objective of the game is to get a row of three Xs or three Os before the opponent does.
+
+## App Preview
+
+<div align="center">
+  <img alt="Tic-Tac-Toe App Preview" src="img/tic-tac-toe.gif" width="auto" height="auto">
+</div>
 
 ## To Set Up Locally
 
@@ -32,4 +33,4 @@ git clone https://github.com/mvrad/tic-tac-toe.git
 
 ## View Project
 
-To view the app online, visit [this link](https://mvrad.github.io/tic-tac-toe).
+To view the app online, visit [this link](https://mvrad.github.io/tic-tac-toe/).
