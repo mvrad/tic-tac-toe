@@ -1,54 +1,35 @@
-![General Assembly Logo](http://i.imgur.com/ke8USTq.png)
+<p align="center">
+  <a href="https://winoapp.herokuapp.com">
+    <img alt="Logo" src="img/logo.svg" width="180px" />
+  </a>
+</p>
+<div align="center">
+  <h1>Tic-Tac-Toe</h1>
+  <h3>The classic pencil-and-paper game written for the browser in HTML, CSS, and vanilla JavaScript.</h3>
+</div>
+<p align="center">
+  <a href="https://github.com/mvrad/tic-tac-toe/blob/master/LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="TravelStar is released under the MIT license.">
+  </a>
+</p>
 
-# Tic Tac Toe
+## About Tic-Tac-Toe
 
-## Objectives
+Tic-tac-toe is a game in which two players alternately put Xs and Os within squares. The objective of the game is to get a row of three Xs or three Os before the opponent does.
 
-* Build a tic tac toe game in HTML, CSS, and vanilla JavaScript
-* Use best practices when writing code
+## To Set Up Locally
 
-This week we have been learning about writing functions, working with loops, and writing conditionals. We also learned about HTML, CSS, and the DOM.
+You can take all the files of this site and run them on your computer as if it were live online, only it's just on your machine.
 
-We will be making a Tic Tac Toe game using all of these concepts.
+### Requirements
 
-## Getting Started
+* [Git](http://git-scm.com/)
 
-* Fork and clone this repository.
-* Run `npm install` to install dependencies.
-  * `npm start` - start BrowserSync server
-* Before you even start working with JavaScript, construct the gameboard. The gameboard page should include the 3x3 grid (of divs), and at minimum a reset button. Using `id` and `class` on clickable elements will help you wire this up in JavaScript afterwards.
-* The JavaScript portion will be next
-  * Select elements and attach functions via event listeners
-  * You will also need a variable to keep track of moves. This will be used to indicate whether or not to draw an `X` or an `O`
+To copy the repository's files from here onto your computer and to view and serve those files locally, at your computer's command line type:
+```
+git clone https://github.com/mvrad/tic-tac-toe.git
+```
 
-## Requirements
-* A user should be able to click on different squares to make a move.
-* Every click will alternate between marking an `X` and `O`
-* Upon marking of an individual cell, use JavaScript to add a class to each cell to display the separate players.
-* A cell should not be able to be replayed once marked.
-* You should not be able to click remaining empty cells after the game is over.
-* Add a reset button that will clear the contents of the board.
-* Display a message to indicate which turn is about to be played.
-* Detect draw conditions (ties/cat's game) 
-* Detect winner: Stop game and declare the winner if one player ends up getting three in a row. 
-  * Hint: Determine a set of winning combinations. Check those combinations on the board contents after every move.
+## View Project
 
-**Have Fun** - The best way to learn is by playing with code. Let creativity guide you and try some experiments with JS and CSS and see what you can do.
-
-## Bonuses
-
-* Implement your reset button without refreshing the whole page
-* Track player's wins over time
-* Add a simple AI to support one player vs computer mode. In this case, "simple" just means having the computer pick a random empty square.
-* Make your computer seem more human by adding a short time delay between your turn and the computer's turn.
-* Style it up! Get creative, or even make a theme!
-
-## Super Duper Bonus
-
-* Add an AI that can beat you every time with the mini-max algorithm.
-
----
-
-## Licensing
-1. All content is licensed under a CC-BY-NC-SA 4.0 license.
-2. All software code is licensed under GNU GPLv3. For commercial use or alternative licensing, please contact legal@ga.co.
+To view the app online, visit [this link](https://mvrad.github.io/tic-tac-toe).
